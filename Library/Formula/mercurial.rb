@@ -1,14 +1,16 @@
 require 'formula'
 
 class Mercurial <Formula
-  url 'http://mercurial.selenic.com/release/mercurial-1.6.4.tar.gz'
+  url 'http://mercurial.selenic.com/release/mercurial-1.7.5.tar.gz'
   homepage 'http://mercurial.selenic.com/downloads/'
-  md5 '657dd6aff80aa9a3b187652a635544d0'
+  md5 '269e924b3770535cf72049db01c35afa'
 
   def install
     # Make Mercurial into the Cellar.
-    system "make", "PREFIX=#{prefix}", "install"
-    # Now we have lib/python2.[56]/site-packages/ with Mercurial
+    # Skip making the docs; depends on 'docutils' module.
+    system "make", "PREFIX=#{prefix}", "build"
+    system "make", "PREFIX=#{prefix}", "install-bin"
+    # Now we have lib/python2.x/site-packages/ with Mercurial
     # libs in them. We want to move these out of site-packages into
     # a self-contained folder. Let's choose libexec.
     libexec.mkpath
