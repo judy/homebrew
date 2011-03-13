@@ -6,6 +6,7 @@ def text_for_keg_only_formula f
 This formula is keg-only, so it was not symlinked into #{HOMEBREW_PREFIX}.
 
 #{f.keg_only?}
+
 Generally there are no consequences of this for you.
 If you build your own software and it requires this formula, you'll need
 to add its lib & include paths to your build variables:
