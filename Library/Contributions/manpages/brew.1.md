@@ -268,10 +268,10 @@ Some sample commands ship with Homebrew and are enabled by default.
     can be used in situations where a firewall blocks non-http URLs.
 
   * HOMEBREW\_SVN:
+    Set this to force Homebrew to use a particular `svn` binary.
+
     When exporting from Subversion, Homebrew will use `HOMEBREW_SVN` if set,
     a Homebrew-built Subversion if installed, or the system-provided binary.
-
-    Set this to force Homebrew to use a particular svn binary.
 
   * HOMEBREW\_TEMP:
     If set, instructs Homebrew to use `HOMEBREW_TEMP` as the temporary folder
