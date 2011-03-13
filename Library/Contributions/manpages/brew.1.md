@@ -263,6 +263,10 @@ Some sample commands ship with Homebrew and are enabled by default.
     If set, Homebrew will not remove files from `share/info`, allowing them
     to be linked from the Cellar.
 
+  * HOMEBREW\_SMART\_HTTP:
+    If set, Hombrew will rewrite GitHub git: URLs into https:// URLs. This
+    can be used in situations where a firewall blocks non-http URLs.
+
   * HOMEBREW\_SVN:
     When exporting from Subversion, Homebrew will use `HOMEBREW_SVN` if set,
     a Homebrew-built Subversion if installed, or the system-provided binary.
