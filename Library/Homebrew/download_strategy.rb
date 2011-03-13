@@ -246,6 +246,14 @@ class GitDownloadStrategy <AbstractDownloadStrategy
     @clone=HOMEBREW_CACHE+@unique_token
   end
 
+  def url_to_use
+    if @url.startswith("git://github.com")
+      return smart-http-version
+    else
+      return @url
+    end
+  end
+
   def cached_location
     @clone
   end
@@ -255,7 +263,7 @@ class GitDownloadStrategy <AbstractDownloadStrategy
           "  brew install git\n" \
           unless system "/usr/bin/which git"
 
-    ohai "Cloning #{@url}"
+    ohai "Cloning #{@url_to_use}"
 
     if @clone.exist?
       Dir.chdir(@clone) do
@@ -268,11 +276,11 @@ class GitDownloadStrategy <AbstractDownloadStrategy
     end
 
     unless @clone.exist?
-      safe_system 'git', 'clone', '--depth', '1', @url, @clone # indeed, leave it verbose
+      safe_system 'git', 'clone', '--depth', '1', @url_to_use, @clone # indeed, leave it verbose
     else
       puts "Updating #{@clone}"
       Dir.chdir(@clone) do
-        quiet_safe_system 'git', 'fetch', @url
+        quiet_safe_system 'git', 'fetch', @url_to_use
         # If we're going to checkout a tag, then we need to fetch new tags too.
         quiet_safe_system 'git', 'fetch', '--tags' if @spec == :tag
       end
