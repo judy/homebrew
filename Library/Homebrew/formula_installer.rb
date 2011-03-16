@@ -17,6 +17,7 @@ class FormulaInstaller
 
     unless ignore_deps
       @f.recursive_deps.each do |dep|
+        # if dep is => :universal, check :universal instead
         FormulaInstaller.install_formula dep unless dep.installed?
       end
       begin
